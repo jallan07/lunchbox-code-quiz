@@ -39,7 +39,17 @@
         <main>
             <section class="row align-items-center">
                 <section class="col-md-12">
-                    <h1 class="text-center"><a href="" data-toggle="modal" data-target="#quizModal">Take the Quiz</a></h1>
+                    <div class="card text-white bg-warning my-3 mx-auto py-4" style="max-width: 40rem;">
+                        <div class="card-body">
+                          <h1 class="card-title text-center">Take the Quiz</h1>
+                          <p class="card-text text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus modi quae ipsam fugiat rerum ipsa reiciendis laboriosam quis perspiciatis. Nulla vel voluptate nisi architecto quae.</p>
+                            <div class="text-center">
+                                <a href="" data-toggle="modal" data-target="#quizModal">
+                                    <button type="button" class="btn btn-primary btn-lg">Start the Clock</button>
+                                </a>
+                            </div>
+                        </div>
+                      </div>
                 </section>
             </section>
             <div class="modal fade" id="quizModal">
@@ -63,8 +73,9 @@
               </div>
         </main>
 <!-- –––––––––––––– FOOTER –––––––––––––– -->
-        <footer>
-
+        <!-- Need to remove the "d-none" class to make it appear when finished -->
+        <footer class="d-none"> 
+            <a href="https://www.freepik.com/photos/background">Background by freepik</a>
         </footer>
 <!-- –––––––––––––– JAVASCRIPT –––––––––––––– -->
         <!-- Main JS -->
