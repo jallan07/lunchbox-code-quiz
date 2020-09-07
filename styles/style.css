@@ -1,0 +1,35 @@
+html {
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    z-index: 10000;
+}
+
+.navbar {
+    width: 80%;
+    margin: 10px auto 0 auto;
+}
+
+.navbar-brand {
+    font-size: 26px;
+}
+
+.navbar-brand span {
+    color: #DC3545;
+}
+
+.navbar li, .navbar button {
+    font-size: 22px;
+}
+
+.nav-link {
+    transition: 0.25s all;
+}
+
+.nav-link:hover {
+    color: #34a744!important;
+    transition: 0.25s all;
+}
