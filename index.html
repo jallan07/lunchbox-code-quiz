@@ -25,12 +25,9 @@
                     <li class="nav-item mx-2 align-self-center">
                         <a class="nav-link" href="#">High Scores</a>
                     </li>
-                    <!-- <li class="nav-item mx-2 align-self-center">
-                        <a class="nav-link" href="#">Creator</a>
-                    </li> -->
                     <li class="nav-item mx-2 align-self-center">
-                        <a class="nav-link" href="#"><button type="button" class="btn btn-outline-success">Start Quiz <span id="time-left">:60</span></button></a>
-                        </li>
+                        <button type="button" class="btn btn-outline-success" id="time-left">Start Quiz :60</button>
+                      </li>
                     </ul>
                 </div>
                 </nav>
@@ -38,46 +35,42 @@
 <!-- –––––––––––––– MAIN CONTENT –––––––––––––– -->
         <main>
 
-            <!-- –––––––––––––– Main Quiz Elements –––––––––––––– -->
-            <section class="row align-items-center">
+            <!-- –––––––––––––– Quiz Start Card –––––––––––––– -->
+            <section class="row align-items-center" id="start-card">
                 <section class="col-md-12">
                     <div class="card border-dark mb-3 my-3 mx-auto py-4" style="max-width: 40rem;">
                         <div class="card-body">
                           <h1 class="card-title text-center">Pop Quiz!</h1>
                           <p class="card-text text-center px-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus modi quae ipsam fugiat rerum ipsa reiciendis laboriosam quis perspiciatis. Nulla vel voluptate nisi architecto quae.</p>
                             <div class="text-center">
-                                <a data-toggle="modal" data-target="#quizModal">
-                                    <button type="button" class="btn btn-warning btn-start btn-lg">Start the Clock</button>
-                                </a>
-                                <a href="https://joshallan.dev/" target="_blank">
-                                  <button type="button" class="btn btn-info btn-lg">Meet the Creator</button>
-                                </a>
+                              <button type="button" class="btn btn-success btn-lg" id="btn-start">Take the Quiz</button>
+                              <a href="https://joshallan.dev/" target="_blank">
+                                  <button type="button" class="btn btn-outline-success btn-lg">Meet the Creator</button>
+                              </a>
                             </div>
                         </div>
                       </div>
                 </section>
             </section>
 
-            <!-- –––––––––––––– Quiz Pop-Up Elements –––––––––––––– -->
-            <div class="modal fade" id="quizModal">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Modal title</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+            <!-- –––––––––––––– Question Cards –––––––––––––– -->
+            <section class="row align-items-center d-none" id="q-cards">
+              <section class="col-md-12">
+                  <div class="card border-dark mb-3 my-3 mx-auto py-4" style="max-width: 40rem;">
+                      <div class="card-body">
+                        <h1 class="card-title text-center">Question #1</h1>
+                        <p class="card-text text-center px-4">What are variables in Javascript?</p>
+                          <div class="text-center">
+                            <button type="button" class="btn btn-outline-secondary">Answer 1</button>
+                            <button type="button" class="btn btn-outline-secondary">Answer 2</button>
+                            <button type="button" class="btn btn-outline-secondary">Answer 3</button>
+                            <button type="button" class="btn btn-outline-secondary">Answer 4</button>
+                          </div>
+                      </div>
                     </div>
-                    <div class="modal-body">
-                      <p>Modal body text goes here.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </section>
+          </section>
+
         </main>
 <!-- –––––––––––––– FOOTER –––––––––––––– -->
         <!-- Need to remove the "d-none" class to make it appear when finished -->
