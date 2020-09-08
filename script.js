@@ -1,47 +1,75 @@
 var startQuizBtn = document.getElementById("btn-start");
 var timeLeft = document.getElementById("time-left");
+var timeLeftMobile = document.getElementById("time-left-mobile")
 var startCard = document.getElementById("start-card");
 
 var quizCards = document.getElementById("q-cards");
 
-var secondsLeft = 60; // CHANGE BACK TO 60
+var secondsLeft = 60;
 var timer;
 
 var score = 0;
 var currentIndex = 1;
-var quiz = [
+
+// ——————————————————————————————————————————— //
+// ————————— BEGIN QUIZ LIBRARY OBJECT ————————— //
+// Questions pulled mainly from the W3Schools Javascript quiz
+// ——————————————————————————————————————————— //
+var quizLibrary = [
     {
        question: 'How do you write "Hello World" in an alert box?',
-       multiChoice: ['alert("Hello World")', 'msg("Hello World");', 'alertBox("Hello World");', 'msgBox("Hello World");'],
-       answer: 'alert("Hello World")' 
+       answers: [
+           { choice: 'alert("Hello World")', correct: true },
+           { choice: 'msg("Hello World");', correct: false },
+           { choice: 'alertBox("Hello World");', correct: false },
+           { choice: 'msgBox("Hello World");', correct: false }
+       ]
     },
     {
-        question: "Inside which HTML element do we put the JavaScript?",
-        multiChoice: ["<javascript>", "<script>", "<scripting>", "<js>"],
-        answer: "<script>" 
-    },
-    {
-        question: "Where is the correct place to insert a JavaScript?",
-        multiChoice: ["The <head> section", "The <body> section", "Either the <head> or <body> section is fine", "None of the above"],
-        answer: "The <body> section" 
-    },
-    {
-        question: "The external JavaScript file must contain the <script> tag.",
-        multiChoice: ["True", "False"],
-        answer: "False" 
-    },
-    {
-        question: "How do you create a function in JavaScript?",
-        multiChoice: ["function:myFunction()", "function myFunction()", "function = myFunction()"],
-        answer: "function myFunction()"
-    }
+        question: 'Inside which HTML element do we put the JavaScript?',
+        answers: [
+            { choice: '<javascript>', correct: false },
+            { choice: '<scripting>', correct: false },
+            { choice: '<js>', correct: false },
+            { choice: '<script>', correct: true }
+        ]
+     },
+     {
+        question: 'Where is the correct place to insert a JavaScript?',
+        answers: [
+            { choice: 'The <head>', correct: false },
+            { choice: 'The <body>', correct: true },
+            { choice: 'The CSS', correct: false },
+            { choice: 'Anywhere', correct: false }
+        ]
+     },
+     {
+        question: 'How do you create a function in JavaScript?',
+        answers: [
+            { choice: 'function:myFunction()', correct: false },
+            { choice: 'function myFunction()', correct: true },
+            { choice: 'function = myFunction()', correct: false },
+            { choice: 'function -> myFunction[]', correct: false }
+        ]
+     },
+     {
+        question: 'How do you write IF statements in Javascript?',
+        answers: [
+            { choice: 'if i == 5 then', correct: false },
+            { choice: 'if i = 5 then', correct: false },
+            { choice: 'if (i === 5)', correct: true },
+            { choice: 'if i = 5', correct: false }
+        ]
+     }
 ];
-
+// ——————————————————————————————————————————— //
+// ————————— END QUIZ LIBRARY OBJECT ————————— //
+// ——————————————————————————————————————————— //
 
 function runQuiz(){
-    console.log(quiz[currentIndex].question); // show questions
-    console.log(quiz[currentIndex].multiChoice);// show choices with a for loop
-    console.log(quiz[currentIndex].answer);// match choice with answer
+    console.log(quizLibrary[currentIndex].question); // show questions
+    console.log(quizLibrary[currentIndex].answers);// show choices with a for loop
+    // match choice with correct answer
     // move to next question
 };
 
@@ -50,6 +78,7 @@ function startTimer(){
         secondsLeft--;
     }
     timeLeft.textContent = "Time Left :" + secondsLeft;
+    timeLeftMobile.textContent = "Time Left :" + secondsLeft;
 };
 
 function startQuiz() {
@@ -61,6 +90,10 @@ function startQuiz() {
     timeLeft.classList.remove("btn-outline-success");
     timeLeft.classList.add("btn-warning");
     timeLeft.classList.add("btn");
+
+    timeLeftMobile.classList.remove("btn-outline-success");
+    timeLeftMobile.classList.add("btn-warning");
+    timeLeftMobile.classList.add("btn");
     // Need to create some logic that advances through the different question cards
     // q1.
     timer = setInterval(startTimer, 1000);
