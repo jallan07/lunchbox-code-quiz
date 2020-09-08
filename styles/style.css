@@ -9,7 +9,7 @@ header {
 }
 
 .navbar {
-    width: 80%;
+    width: 90%;
     margin: 20px auto 0 auto;
 }
 
@@ -46,17 +46,38 @@ main .row {
     background-size: cover;
 }
 
-h1 a{
-    text-decoration: none;
-    color: #fff;
+.card {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
 }
 
-h1 a:hover {
-    color: #f4c109;
-    transition: 0.25s all;
-    text-decoration: none;
+.card button {
+    border-color: #fff;
+    color: #fff; 
 }
 
-.bg-warning {
-    background: #f4c109a1!important;
+
+/* ————————————————————————— */
+/* ————— MEDIA QUERIES ————— */
+/* ————————————————————————— */
+@media screen and (max-width: 769px) {
+    main {
+        margin: 0 auto;
+    }
+    .row {
+        margin: 0 auto;
+    }
 }
