@@ -43,7 +43,8 @@ header {
 main .row {
     height: 100vh;
     width: 100%;
-    background: url(../img/background.jpg) grey center center;
+    /* background: url(../img/background.jpg) grey center center; */
+    background: url(../img/background.jpg), radial-gradient(#e6e6e6, #212121) center center;
     background-size: cover;
     background-blend-mode: lighten;
     -webkit-background-size: cover;
@@ -84,6 +85,9 @@ main .row {
 @media screen and (max-width: 769px) {
     main {
         margin: 0 auto;
+    }
+    main .row {
+        background: url(../img/background.jpg), radial-gradient(#e6e6e6, #212121) right top;
     }
     .row {
         margin: 0 auto;
