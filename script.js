@@ -1,32 +1,41 @@
+// —————————————————————————————————————————— //
+// —————— BEGIN VARIABLE DECLARATIONS ——————— //
+// —————————————————————————————————————————— //
 // Variables from navigation elements
 var logo = document.getElementById("logo");
 var highScoresBtn = document.getElementById("btn-hs");
 var startQuizBtn = document.getElementById("btn-start");
 var timeLeft = document.getElementById("time-left");
-
 // Variables from main content area
 var startCard = document.getElementById("start-card");
 var quizCards = document.getElementById("q-cards");
 var hsCard = document.getElementById("hs-card");
 var timeLeftMobile = document.getElementById("time-left-mobile");
-
+// Variables from question card
+var questionNumEl = document.getElementById("quizQuestionNum");
+var questionEl = document.getElementById("quizQuestion");
+var answersEl = document.getElementById("answer-btns");
 // Variables from High Score card
 var resetFromHS = document.getElementById("returnFromHS");
 var startFromHS = document.getElementById("startFromHS");
-
-// General variables for quiz logic
+// Variables for general quiz logic
 var secondsLeft = 60;
 var timer;
 var score = 0;
-var currentIndex = 1;
+var currentQuestionIndex = 0;
+// —————————————————————————————————————————— //
+// ——————— END VARIABLE DECLARATIONS ———————— //
+// —————————————————————————————————————————— //
 
 
-// ——————————————————————————————————————————— //
+
+// ————————————————————————————————————————————— //
 // ————————— BEGIN QUIZ LIBRARY OBJECT ————————— //
 // Questions pulled mainly from the W3Schools Javascript quiz
-// ——————————————————————————————————————————— //
+// ————————————————————————————————————————————— //
 var quizLibrary = [
     {
+       number: "Question #1",
        question: 'How do you write "Hello World" in an alert box?',
        answers: [
            { choice: 'alert("Hello World")', correct: true },
@@ -36,6 +45,7 @@ var quizLibrary = [
        ]
     },
     {
+        number: "Question #2",
         question: 'Inside which HTML element do we put the JavaScript?',
         answers: [
             { choice: '<javascript>', correct: false },
@@ -45,6 +55,7 @@ var quizLibrary = [
         ]
      },
      {
+        number: "Question #3",
         question: 'Where is the correct place to insert a JavaScript?',
         answers: [
             { choice: 'The <head>', correct: false },
@@ -54,6 +65,7 @@ var quizLibrary = [
         ]
      },
      {
+        number: "Question #4",
         question: 'How do you create a function in JavaScript?',
         answers: [
             { choice: 'function:myFunction()', correct: false },
@@ -63,6 +75,7 @@ var quizLibrary = [
         ]
      },
      {
+        number: "Question #5",
         question: 'How do you write IF statements in Javascript?',
         answers: [
             { choice: 'if i == 5 then', correct: false },
@@ -76,13 +89,40 @@ var quizLibrary = [
 // ————————— END QUIZ LIBRARY OBJECT ————————— //
 // ——————————————————————————————————————————— //
 
-function runQuiz(){
-    console.log(quizLibrary[currentIndex].question); // show questions
-    console.log(quizLibrary[currentIndex].answers);// show choices with a for loop
+
+
+// ——————————————————————————————————————————— //
+// ——————————— BEGIN QUIZ FUNCTIONS —————————— //
+// ——————————————————————————————————————————— //
+function startQuiz() {
+    startCard.classList.add("d-none");
+    quizCards.classList.remove("d-none");
+    
+    advanceQuizQuestions();
+    timerRunning();
+};
+function advanceQuizQuestions(){
+    showNextQuestion();
+
+    
+    // console.log(quizLibrary[currentIndex].question); // show questions
+    // console.log(quizLibrary[currentIndex].answers);// show choices with a for loop
     // match choice with correct answer
     // move to next question
 };
 
+function showNextQuestion(){
+
+};
+// ——————————————————————————————————————————— //
+// ———————————— END QUIZ FUNCTIONS ——————————— //
+// ——————————————————————————————————————————— //
+
+
+
+// ——————————————————————————————————————————— //
+// ————————— BEGIN TIMER FUNCTIONS ——————————— //
+// ——————————————————————————————————————————— //
 function startTimer(){
     if (secondsLeft > 0) {
         secondsLeft--;
@@ -90,49 +130,75 @@ function startTimer(){
     timeLeft.textContent = "Time Left :" + secondsLeft;
     timeLeftMobile.textContent = "Time Left :" + secondsLeft;
 };
-
-function startQuiz() {
-    startCard.classList.add("d-none");
-    quizCards.classList.remove("d-none");
-    
-    runQuiz();
-
+function timerRunning(){
+    timer = setInterval(startTimer, 1000);
     timeLeft.classList.remove("btn-outline-success");
     timeLeft.classList.add("btn-warning");
     timeLeft.classList.add("btn");
-
     timeLeftMobile.classList.remove("btn-outline-success");
     timeLeftMobile.classList.add("btn-warning");
     timeLeftMobile.classList.add("btn");
-    // Need to create some logic that advances through the different question cards
-    // q1.
-    timer = setInterval(startTimer, 1000);
 };
+function resetTimer(){
+    // clear the timer interval
+    clearInterval(timer);
+    // Reset the timer button to original state
+    timeLeft.classList.add("btn-outline-success");
+    timeLeft.classList.remove("btn-warning");
+    timeLeft.classList.remove("btn");
+    secondsLeft = 60;
+    timeLeft.textContent = "Start Quiz :" + secondsLeft;
+    timeLeftMobile.textContent = "Start Quiz :" + secondsLeft;
+};
+// ——————————————————————————————————————————— //
+// ————————— END TIMER FUNCTIONS ————————————— //
+// ——————————————————————————————————————————— //
 
+
+
+// ————————————————————————————————————————— //
+// —————— BEGIN HIGH SCORE FUNCTIONS ——————— //
+// ————————————————————————————————————————— //
 function showHighScores(){
     startCard.classList.add("d-none");
     quizCards.classList.add("d-none");
     hsCard.classList.remove("d-none");
-}
+    resetTimer();
+};
+// ————————————————————————————————————————— //
+// ——————— END HIGH SCORE FUNCTIONS ———————— //
+// ————————————————————————————————————————— //
 
+
+
+// ——————————————————————————————————————————— //
+// ———————— BEGIN QUIZ RESET FUNCTION ———————— //
+// ——————————————————————————————————————————— //
 function reset(){
+    // Reset to main card
     startCard.classList.remove("d-none");
     quizCards.classList.add("d-none");
     hsCard.classList.add("d-none");
-}
+    resetTimer();
+};
+// ——————————————————————————————————————————— //
+// ————————— END QUIZ RESET FUNCTION ————————— //
+// ——————————————————————————————————————————— //
+
+
 
 // ——————————————————————————————————————————— //
-// ————————————— EVENT LISTENERS ————————————— //
+// —————————— BEGIN EVENT LISTENERS —————————— //
 // ——————————————————————————————————————————— //
-
 // Start quiz listeners
 startQuizBtn.addEventListener("click", startQuiz);
 timeLeft.addEventListener("click", startQuiz);
 startFromHS.addEventListener("click", startQuiz);
-
 // Show high scores listener
 highScoresBtn.addEventListener("click", showHighScores);
-
 // Reset listeners
 logo.addEventListener("click", reset);
 resetFromHS.addEventListener("click", reset);
+// ——————————————————————————————————————————— //
+// ——————————— END EVENT LISTENERS ——————————— //
+// ——————————————————————————————————————————— //
