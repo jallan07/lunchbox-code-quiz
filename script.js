@@ -1,15 +1,25 @@
+// Variables from navigation elements
+var logo = document.getElementById("logo");
+var highScoresBtn = document.getElementById("btn-hs");
 var startQuizBtn = document.getElementById("btn-start");
 var timeLeft = document.getElementById("time-left");
-var timeLeftMobile = document.getElementById("time-left-mobile")
+
+// Variables from main content area
 var startCard = document.getElementById("start-card");
-
 var quizCards = document.getElementById("q-cards");
+var hsCard = document.getElementById("hs-card");
+var timeLeftMobile = document.getElementById("time-left-mobile");
 
+// Variables from High Score card
+var resetFromHS = document.getElementById("returnFromHS");
+var startFromHS = document.getElementById("startFromHS");
+
+// General variables for quiz logic
 var secondsLeft = 60;
 var timer;
-
 var score = 0;
 var currentIndex = 1;
+
 
 // ——————————————————————————————————————————— //
 // ————————— BEGIN QUIZ LIBRARY OBJECT ————————— //
@@ -99,5 +109,30 @@ function startQuiz() {
     timer = setInterval(startTimer, 1000);
 };
 
+function showHighScores(){
+    startCard.classList.add("d-none");
+    quizCards.classList.add("d-none");
+    hsCard.classList.remove("d-none");
+}
+
+function reset(){
+    startCard.classList.remove("d-none");
+    quizCards.classList.add("d-none");
+    hsCard.classList.add("d-none");
+}
+
+// ——————————————————————————————————————————— //
+// ————————————— EVENT LISTENERS ————————————— //
+// ——————————————————————————————————————————— //
+
+// Start quiz listeners
 startQuizBtn.addEventListener("click", startQuiz);
 timeLeft.addEventListener("click", startQuiz);
+startFromHS.addEventListener("click", startQuiz);
+
+// Show high scores listener
+highScoresBtn.addEventListener("click", showHighScores);
+
+// Reset listeners
+logo.addEventListener("click", reset);
+resetFromHS.addEventListener("click", reset);

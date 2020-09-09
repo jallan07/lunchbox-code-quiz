@@ -37,6 +37,10 @@ header {
     transition: 0.25s all;
 }
 
+#btn-hs {
+    cursor: pointer;
+}
+
 /* ————————————————————————— */
 /* ————— MAIN  CONTENT ————— */
 /* ————————————————————————— */
