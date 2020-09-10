@@ -62,6 +62,11 @@ main .row {
     color: #DC3545;
 }
 
+.answerBtn{
+    margin: 2px 2px;
+}
+
+
 /* ————————————————————————— */
 /* ——————— QUIZ CARD ——————— */
 /* ————————————————————————— */
@@ -99,5 +104,8 @@ main .row {
     }
     #time-left-mobile {
         display: block;
+    }
+    h1 {
+        font-size: 30px;
     }
 }

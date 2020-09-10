@@ -14,11 +14,11 @@ var timeLeftMobile = document.getElementById("time-left-mobile");
 // Variables from question card
 var questionNumEl = document.getElementById("quizQuestionNum");
 var questionEl = document.getElementById("quizQuestion");
-var answersEl = document.getElementById("answer-btns");
 var answerBtn1 = document.getElementById("answerBtn1");
 var answerBtn2 = document.getElementById("answerBtn2");
 var answerBtn3 = document.getElementById("answerBtn3");
 var answerBtn4 = document.getElementById("answerBtn4");
+var answerBtnAll = document.querySelector('.answerBtn')
 // Variables from High Score card
 var resetFromHS = document.getElementById("returnFromHS");
 var startFromHS = document.getElementById("startFromHS");
@@ -36,7 +36,7 @@ var currentQuestion = 0;
 // ——————————————————————————————————————————— //
 // ——————————— BEGIN QUIZ FUNCTIONS —————————— //
 // ——————————————————————————————————————————— //
-function startQuiz() {
+function runQuiz() {
     startCard.classList.add("d-none");
     quizCards.classList.remove("d-none");
   
@@ -47,25 +47,36 @@ function startQuiz() {
 function showNextQuestion(){
     // Push question number to div element
     questionNumEl.textContent = quizLibrary[currentQuestion].number;
+    
     // Push question to div element
     questionEl.innerHTML = quizLibrary[currentQuestion].question;
+    
     // Push answer options to button elements
     answerBtn1.textContent = quizLibrary[currentQuestion].option1;
     answerBtn2.textContent = quizLibrary[currentQuestion].option2;
     answerBtn3.textContent = quizLibrary[currentQuestion].option3;
     answerBtn4.textContent = quizLibrary[currentQuestion].option4;
+    
+    // Event listeners on selected answers
+    answerBtn1.addEventListener("click", answerSelected);
+    answerBtn2.addEventListener("click", answerSelected);
+    answerBtn3.addEventListener("click", answerSelected);
+    answerBtn4.addEventListener("click", answerSelected);
+
 };
 
-
-function compareAnswers(){
-    if (e.target === quizLibrary[currentQuestion].answer){
+// ?? NOT WORKING.... Listener event function that waits for a user to select their answer
+function answerSelected(e){
+    var userSelection = e.target;
+    if (userSelection === quizLibrary[currentQuestion].answer) {
+        currentQuestion++;
         showNextQuestion();
     } else {
+        // secondsLeft -= 10;
+        currentQuestion++;
         showNextQuestion();
-        secondsLeft - 10;
     }
 };
-
 // ——————————————————————————————————————————— //
 // ———————————— END QUIZ FUNCTIONS ——————————— //
 // ——————————————————————————————————————————— //
@@ -143,14 +154,17 @@ function reset(){
 // —————————— BEGIN EVENT LISTENERS —————————— //
 // ——————————————————————————————————————————— //
 // Start quiz listeners
-startQuizBtn.addEventListener("click", startQuiz);
-timeLeft.addEventListener("click", startQuiz);
-startFromHS.addEventListener("click", startQuiz);
+startQuizBtn.addEventListener("click", runQuiz);
+timeLeft.addEventListener("click", runQuiz);
+startFromHS.addEventListener("click", runQuiz);
+// Quiz running listeners
+answerBtnAll.addEventListener("click", answerSelected);
 // Show high scores listener
 highScoresBtn.addEventListener("click", showHighScores);
 // Reset listeners
 logo.addEventListener("click", reset);
 resetFromHS.addEventListener("click", reset);
+
 // ——————————————————————————————————————————— //
 // ——————————— END EVENT LISTENERS ——————————— //
 // ——————————————————————————————————————————— //
@@ -169,7 +183,7 @@ var quizLibrary = [
        option2: 'msg("Hello World");',
        option3: 'alertBox("Hello World");',
        option4: 'msgBox("Hello World");',
-       answer: 1
+       answer: 'alert("Hello World")'
     },
     {
         number: "Question #2",
@@ -178,7 +192,7 @@ var quizLibrary = [
         option2: '<scripting>',
         option3: '<js>',
         option4: '<script>',
-        answer: 4
+        answer: '<script>'
      },
      {
         number: "Question #3",
@@ -187,7 +201,7 @@ var quizLibrary = [
         option2: 'The <body>',
         option3: 'The CSS',
         option4: 'Anywhere',
-        answer: 2
+        answer: 'The <body>'
      },
      {
         number: "Question #4",
@@ -196,7 +210,7 @@ var quizLibrary = [
         option2: 'function myFunction()',
         option3: 'function = myFunction()',
         option4: 'function -> myFunction[]',
-        answer: 2
+        answer: 'function myFunction()'
      },
      {
         number: "Question #5",
@@ -205,7 +219,7 @@ var quizLibrary = [
         option2: 'if i = 5 then',
         option3: 'if (i === 5)',
         option4: 'if i = 5',
-        answer: 3
+        answer: 'if (i === 5)'
      }
 ];
 // ——————————————————————————————————————————— //
