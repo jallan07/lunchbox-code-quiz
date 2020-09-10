@@ -21,10 +21,6 @@ header {
     cursor: pointer;
 }
 
-.navbar-brand span {
-    color: #DC3545;
-}
-
 .navbar li, .navbar button {
     font-size: 22px;
 }
@@ -60,6 +56,10 @@ main .row {
 
 #time-left-mobile {
     display: none;
+}
+
+#box {
+    color: #DC3545;
 }
 
 /* ————————————————————————— */

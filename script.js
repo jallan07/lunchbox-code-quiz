@@ -15,6 +15,10 @@ var timeLeftMobile = document.getElementById("time-left-mobile");
 var questionNumEl = document.getElementById("quizQuestionNum");
 var questionEl = document.getElementById("quizQuestion");
 var answersEl = document.getElementById("answer-btns");
+var answerBtn1 = document.getElementById("answerBtn1");
+var answerBtn2 = document.getElementById("answerBtn2");
+var answerBtn3 = document.getElementById("answerBtn3");
+var answerBtn4 = document.getElementById("answerBtn4");
 // Variables from High Score card
 var resetFromHS = document.getElementById("returnFromHS");
 var startFromHS = document.getElementById("startFromHS");
@@ -22,72 +26,10 @@ var startFromHS = document.getElementById("startFromHS");
 var secondsLeft = 60;
 var timer;
 var score = 0;
-var currentQuestionIndex = 0;
+var currentQuestion = 0;
 // —————————————————————————————————————————— //
 // ——————— END VARIABLE DECLARATIONS ———————— //
 // —————————————————————————————————————————— //
-
-
-
-// ————————————————————————————————————————————— //
-// ————————— BEGIN QUIZ LIBRARY OBJECT ————————— //
-// Questions pulled mainly from the W3Schools Javascript quiz
-// ————————————————————————————————————————————— //
-var quizLibrary = [
-    {
-       number: "Question #1",
-       question: 'How do you write "Hello World" in an alert box?',
-       answers: [
-           { choice: 'alert("Hello World")', correct: true },
-           { choice: 'msg("Hello World");', correct: false },
-           { choice: 'alertBox("Hello World");', correct: false },
-           { choice: 'msgBox("Hello World");', correct: false }
-       ]
-    },
-    {
-        number: "Question #2",
-        question: 'Inside which HTML element do we put the JavaScript?',
-        answers: [
-            { choice: '<javascript>', correct: false },
-            { choice: '<scripting>', correct: false },
-            { choice: '<js>', correct: false },
-            { choice: '<script>', correct: true }
-        ]
-     },
-     {
-        number: "Question #3",
-        question: 'Where is the correct place to insert a JavaScript?',
-        answers: [
-            { choice: 'The <head>', correct: false },
-            { choice: 'The <body>', correct: true },
-            { choice: 'The CSS', correct: false },
-            { choice: 'Anywhere', correct: false }
-        ]
-     },
-     {
-        number: "Question #4",
-        question: 'How do you create a function in JavaScript?',
-        answers: [
-            { choice: 'function:myFunction()', correct: false },
-            { choice: 'function myFunction()', correct: true },
-            { choice: 'function = myFunction()', correct: false },
-            { choice: 'function -> myFunction[]', correct: false }
-        ]
-     },
-     {
-        number: "Question #5",
-        question: 'How do you write IF statements in Javascript?',
-        answers: [
-            { choice: 'if i == 5 then', correct: false },
-            { choice: 'if i = 5 then', correct: false },
-            { choice: 'if (i === 5)', correct: true },
-            { choice: 'if i = 5', correct: false }
-        ]
-     }
-];
-// ——————————————————————————————————————————— //
-// ————————— END QUIZ LIBRARY OBJECT ————————— //
-// ——————————————————————————————————————————— //
 
 
 
@@ -97,23 +39,33 @@ var quizLibrary = [
 function startQuiz() {
     startCard.classList.add("d-none");
     quizCards.classList.remove("d-none");
-    
-    advanceQuizQuestions();
-    timerRunning();
-};
-function advanceQuizQuestions(){
+  
     showNextQuestion();
-
-    
-    // console.log(quizLibrary[currentIndex].question); // show questions
-    // console.log(quizLibrary[currentIndex].answers);// show choices with a for loop
-    // match choice with correct answer
-    // move to next question
+    timerRunning();
 };
 
 function showNextQuestion(){
-
+    // Push question number to div element
+    questionNumEl.textContent = quizLibrary[currentQuestion].number;
+    // Push question to div element
+    questionEl.innerHTML = quizLibrary[currentQuestion].question;
+    // Push answer options to button elements
+    answerBtn1.textContent = quizLibrary[currentQuestion].option1;
+    answerBtn2.textContent = quizLibrary[currentQuestion].option2;
+    answerBtn3.textContent = quizLibrary[currentQuestion].option3;
+    answerBtn4.textContent = quizLibrary[currentQuestion].option4;
 };
+
+
+function compareAnswers(){
+    if (e.target === quizLibrary[currentQuestion].answer){
+        showNextQuestion();
+    } else {
+        showNextQuestion();
+        secondsLeft - 10;
+    }
+};
+
 // ——————————————————————————————————————————— //
 // ———————————— END QUIZ FUNCTIONS ——————————— //
 // ——————————————————————————————————————————— //
@@ -202,3 +154,62 @@ resetFromHS.addEventListener("click", reset);
 // ——————————————————————————————————————————— //
 // ——————————— END EVENT LISTENERS ——————————— //
 // ——————————————————————————————————————————— //
+
+
+
+// ————————————————————————————————————————————— //
+// ————————— BEGIN QUIZ LIBRARY OBJECT ————————— //
+// Questions pulled mainly from the W3Schools Javascript quiz
+// ————————————————————————————————————————————— //
+var quizLibrary = [
+    {
+       number: "Question #1",
+       question: 'How do you write "Hello World" in an alert box?',
+       option1: 'alert("Hello World")',
+       option2: 'msg("Hello World");',
+       option3: 'alertBox("Hello World");',
+       option4: 'msgBox("Hello World");',
+       answer: 1
+    },
+    {
+        number: "Question #2",
+        question: 'Inside which HTML element do we put the JavaScript?',
+        option1: '<javascript>',
+        option2: '<scripting>',
+        option3: '<js>',
+        option4: '<script>',
+        answer: 4
+     },
+     {
+        number: "Question #3",
+        question: 'Where is the correct place to insert a JavaScript?',
+        option1: 'The <head>',
+        option2: 'The <body>',
+        option3: 'The CSS',
+        option4: 'Anywhere',
+        answer: 2
+     },
+     {
+        number: "Question #4",
+        question: 'How do you create a function in JavaScript?',
+        option1: 'function:myFunction()',
+        option2: 'function myFunction()',
+        option3: 'function = myFunction()',
+        option4: 'function -> myFunction[]',
+        answer: 2
+     },
+     {
+        number: "Question #5",
+        question: 'How do you write IF statements in Javascript?',
+        option1: 'if i == 5 then',
+        option2: 'if i = 5 then',
+        option3: 'if (i === 5)',
+        option4: 'if i = 5',
+        answer: 3
+     }
+];
+// ——————————————————————————————————————————— //
+// ————————— END QUIZ LIBRARY OBJECT ————————— //
+// ——————————————————————————————————————————— //
+
+

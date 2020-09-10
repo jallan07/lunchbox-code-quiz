@@ -15,7 +15,7 @@
 <!-- –––––––––––––– HEADER & NAV –––––––––––––– -->
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
-                <a class="navbar-brand" id="logo">Lunch<span>Box</span></a>
+                <a class="navbar-brand" id="logo">Lunch<span id="box">Box</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -40,8 +40,8 @@
                 <section class="col-md-12">
                     <div class="card border-dark mb-3 my-3 mx-auto py-4" style="max-width: 40rem;">
                         <div class="card-body">
-                          <h1 class="card-title text-center">Pop Quiz!</h1>
-                          <p class="card-text text-center px-4">Do you have what it takes to complete the LunchBox coding quiz? Race the clock as you try to answer every question before time expires!</p>
+                          <h1 class="card-title text-center px-2">Learn the fundamentals of coding in bite-sized chunks.</h1>
+                          <p class="card-text text-center px-4">Do you have what it takes to complete the Lunch<span id="box">Box</span> coding quiz? Race the clock as you try to answer every question before time expires!</p>
                             <div class="text-center">
                               <button type="button" class="btn btn-success btn-lg" id="btn-start">Take the Quiz</button>
                               <a href="https://joshallan.dev/" target="_blank">
@@ -61,11 +61,13 @@
                         <button type="button" class="btn btn-lg btn-outline-success mx-auto mb-3" id="time-left-mobile">Time Left :60</button>
                         <h1 class="card-title text-center" id="quizQuestionNum">Question #1</h1>
                         <p class="card-text text-center px-4" id="quizQuestion">What are variables in Javascript?</p>
-                          <div class="text-center" id="answer-btns">
-                            <button type="button" class="btn btn-outline-secondary">Answer 1</button>
-                            <button type="button" class="btn btn-outline-secondary">Answer 2</button>
-                            <button type="button" class="btn btn-outline-secondary">Answer 3</button>
-                            <button type="button" class="btn btn-outline-secondary">Answer 4</button>
+                        <div class="text-center my-2">
+                            <button type="button" class="btn btn-lg btn-outline-secondary" id="answerBtn1">Answer 1</button>
+                            <button type="button" class="btn btn-lg btn-outline-secondary" id="answerBtn2">Answer 2</button>
+                        </div>
+                        <div class="text-center my-2">
+                            <button type="button" class="btn btn-lg btn-outline-secondary" id="answerBtn3">Answer 3</button>
+                            <button type="button" class="btn btn-lg btn-outline-secondary" id="answerBtn4">Answer 4</button>
                           </div>
                       </div>
                     </div>
