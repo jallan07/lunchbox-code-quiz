@@ -36,15 +36,15 @@ var currentQuestion = 0;
 // ——————————————————————————————————————————— //
 // ——————————— BEGIN QUIZ FUNCTIONS —————————— //
 // ——————————————————————————————————————————— //
+function startQuiz(){
+    timerRunning();
+    runQuiz();
+}
+
 function runQuiz() {
     startCard.classList.add("d-none");
     quizCards.classList.remove("d-none");
-  
-    showNextQuestion();
-    timerRunning();
-};
 
-function showNextQuestion(){
     // Push question number to div element
     questionNumEl.textContent = quizLibrary[currentQuestion].number;
     
@@ -62,19 +62,20 @@ function showNextQuestion(){
     answerBtn2.addEventListener("click", answerSelected);
     answerBtn3.addEventListener("click", answerSelected);
     answerBtn4.addEventListener("click", answerSelected);
-
 };
 
 // ?? NOT WORKING.... Listener event function that waits for a user to select their answer
-function answerSelected(e){
-    var userSelection = e.target;
+function answerSelected(){
+    var userSelection = this.innerHTML;
     if (userSelection === quizLibrary[currentQuestion].answer) {
+        console.log(userSelection);
         currentQuestion++;
-        showNextQuestion();
+        runQuiz();
     } else {
-        // secondsLeft -= 10;
+        console.log(userSelection);
+        secondsLeft -= 10;
         currentQuestion++;
-        showNextQuestion();
+        runQuiz();
     }
 };
 // ——————————————————————————————————————————— //
@@ -93,6 +94,7 @@ function startTimer(){
     timeLeft.textContent = "Time Left :" + secondsLeft;
     timeLeftMobile.textContent = "Time Left :" + secondsLeft;
 };
+
 function timerRunning(){
     timer = setInterval(startTimer, 1000);
     timeLeft.classList.remove("btn-outline-success");
@@ -102,6 +104,7 @@ function timerRunning(){
     timeLeftMobile.classList.add("btn-warning");
     timeLeftMobile.classList.add("btn");
 };
+
 function resetTimer(){
     // clear the timer interval
     clearInterval(timer);
@@ -154,9 +157,9 @@ function reset(){
 // —————————— BEGIN EVENT LISTENERS —————————— //
 // ——————————————————————————————————————————— //
 // Start quiz listeners
-startQuizBtn.addEventListener("click", runQuiz);
-timeLeft.addEventListener("click", runQuiz);
-startFromHS.addEventListener("click", runQuiz);
+startQuizBtn.addEventListener("click", startQuiz);
+timeLeft.addEventListener("click", startQuiz);
+startFromHS.addEventListener("click", startQuiz);
 // Quiz running listeners
 answerBtnAll.addEventListener("click", answerSelected);
 // Show high scores listener
@@ -192,7 +195,7 @@ var quizLibrary = [
         option2: '<scripting>',
         option3: '<js>',
         option4: '<script>',
-        answer: '<script>'
+        answer: '&lt;script&gt;'
      },
      {
         number: "Question #3",
@@ -201,7 +204,7 @@ var quizLibrary = [
         option2: 'The <body>',
         option3: 'The CSS',
         option4: 'Anywhere',
-        answer: 'The <body>'
+        answer: 'The &lt;body&gt;'
      },
      {
         number: "Question #4",
