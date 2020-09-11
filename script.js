@@ -81,13 +81,11 @@ function checkForLastQuestion(){
         currentQuestion++;
         runQuiz();
     } else {
-        submitHighScore();
+        showHighScores();
+        console.log("submit your score!");
     }
 };
 
-function submitHighScore(){
-    console.log("submit your score!");
-};
 // ——————————————————————————————————————————— //
 // ———————————— END QUIZ FUNCTIONS ——————————— //
 // ——————————————————————————————————————————— //
