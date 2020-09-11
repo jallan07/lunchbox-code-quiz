@@ -20,6 +20,7 @@ var answerBtn3 = document.getElementById("answerBtn3");
 var answerBtn4 = document.getElementById("answerBtn4");
 var answerBtnAll = document.querySelector('.answerBtn')
 // Variables from High Score card
+var submitCard = document.getElementById("submit-card");
 var resetFromHS = document.getElementById("returnFromHS");
 var startFromHS = document.getElementById("startFromHS");
 // Variables for general quiz logic
@@ -39,7 +40,7 @@ var currentQuestion = 0;
 function startQuiz(){
     timerRunning();
     runQuiz();
-}
+};
 
 function runQuiz() {    
     startCard.classList.add("d-none");
@@ -81,9 +82,18 @@ function checkForLastQuestion(){
         currentQuestion++;
         runQuiz();
     } else {
-        showHighScores();
-        console.log("submit your score!");
+        submitScore();
     }
+};
+
+function submitScore(){
+    // Display only the submit score card
+    startCard.classList.add("d-none");
+    quizCards.classList.add("d-none");
+    hsCard.classList.add("d-none");
+    submitCard.classList.remove("d-none");
+    // Stop the timer from counting down any further
+    clearInterval(timer);
 };
 
 // ——————————————————————————————————————————— //

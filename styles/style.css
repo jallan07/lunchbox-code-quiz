@@ -66,6 +66,10 @@ main .row {
     margin: 2px 2px;
 }
 
+#userName {
+    width: 80%;
+}
+
 
 /* ————————————————————————— */
 /* ——————— QUIZ CARD ——————— */
