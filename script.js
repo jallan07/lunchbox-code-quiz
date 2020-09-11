@@ -41,7 +41,7 @@ function startQuiz(){
     runQuiz();
 }
 
-function runQuiz() {
+function runQuiz() {    
     startCard.classList.add("d-none");
     quizCards.classList.remove("d-none");
 
@@ -64,19 +64,29 @@ function runQuiz() {
     answerBtn4.addEventListener("click", answerSelected);
 };
 
-// ?? NOT WORKING.... Listener event function that waits for a user to select their answer
+// User has selected an answer and we need to compare to the actual answer
 function answerSelected(){
     var userSelection = this.innerHTML;
     if (userSelection === quizLibrary[currentQuestion].answer) {
-        console.log(userSelection);
+        checkForLastQuestion();
+    } else {
+        secondsLeft -= 10;
+        checkForLastQuestion();
+    }
+};
+
+// Check to see if they answered the last question of the quiz
+function checkForLastQuestion(){
+    if (currentQuestion < (quizLibrary.length - 1)) {
         currentQuestion++;
         runQuiz();
     } else {
-        console.log(userSelection);
-        secondsLeft -= 10;
-        currentQuestion++;
-        runQuiz();
+        submitHighScore();
     }
+};
+
+function submitHighScore(){
+    console.log("submit your score!");
 };
 // ——————————————————————————————————————————— //
 // ———————————— END QUIZ FUNCTIONS ——————————— //
