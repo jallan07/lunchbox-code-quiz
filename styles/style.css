@@ -12,7 +12,7 @@ header {
 }
 
 .navbar {
-    width: 90%;
+    width: 70%;
     margin: 20px auto 0 auto;
 }
 
@@ -93,6 +93,9 @@ main .row {
 /* ————— MEDIA QUERIES ————— */
 /* ————————————————————————— */
 @media screen and (max-width: 769px) {
+    .navbar {
+        width: 90%;
+    }
     main {
         margin: 0 auto;
     }

@@ -150,10 +150,7 @@ function showHighScores(){
 // ——————————————————————————————————————————— //
 function reset(){
     // Reset to main card
-    startCard.classList.remove("d-none");
-    quizCards.classList.add("d-none");
-    hsCard.classList.add("d-none");
-    resetTimer();
+    location.reload();
 };
 // ——————————————————————————————————————————— //
 // ————————— END QUIZ RESET FUNCTION ————————— //
@@ -166,10 +163,7 @@ function reset(){
 // ——————————————————————————————————————————— //
 // Start quiz listeners
 startQuizBtn.addEventListener("click", startQuiz);
-timeLeft.addEventListener("click", startQuiz);
 startFromHS.addEventListener("click", startQuiz);
-// Quiz running listeners
-answerBtnAll.addEventListener("click", answerSelected);
 // Show high scores listener
 highScoresBtn.addEventListener("click", showHighScores);
 // Reset listeners
@@ -231,6 +225,33 @@ var quizLibrary = [
         option3: 'if (i === 5)',
         option4: 'if i = 5',
         answer: 'if (i === 5)'
+     },
+     {
+        number: "Question #6",
+        question: 'How do you round the number 7.25, to the nearest integer?',
+        option1: 'Math.round(7.25)',
+        option2: 'Math.rnd(7.25)',
+        option3: 'rnd(7.25)',
+        option4: 'round(7.25)',
+        answer: 'Math.round(7.25)'
+     },
+     {
+        number: "Question #7",
+        question: 'How do you find the number with the highest value of x and y?',
+        option1: 'top(x, y)',
+        option2: 'Math.ceil(x, y)',
+        option3: 'ceil(x, y)',
+        option4: 'Math.max(x, y)',
+        answer: 'Math.max(x, y)'
+     },
+     {
+        number: "Question #8",
+        question: 'Which event occurs when the user clicks on an HTML element?',
+        option1: 'onmouseclick',
+        option2: 'onchange',
+        option3: 'onclick',
+        option4: 'onmouseover',
+        answer: 'onclick'
      }
 ];
 // ——————————————————————————————————————————— //
