@@ -20,6 +20,7 @@ var answerBtn3 = document.getElementById("answerBtn3");
 var answerBtn4 = document.getElementById("answerBtn4");
 var answerBtnAll = document.querySelector('.answerBtn')
 // Variables from High Score card
+var userScoreSpan = document.getElementById("userScore");
 var submitCard = document.getElementById("submit-card");
 var resetFromHS = document.getElementById("returnFromHS");
 var startFromHS = document.getElementById("startFromHS");
@@ -94,6 +95,10 @@ function submitScore(){
     submitCard.classList.remove("d-none");
     // Stop the timer from counting down any further
     clearInterval(timer);
+    // Set the user score to the time left on the clock
+    var userScore = secondsLeft;
+    // Write the final score to the submit score page
+    userScoreSpan.innerHTML = userScore;
 };
 
 // ——————————————————————————————————————————— //
