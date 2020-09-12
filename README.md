@@ -1,25 +1,30 @@
-# Pseudocode
+# LunchBox Code Quiz
 
-1. 
-
+This is an interactive quiz that tests your knowledge on Javascript coding fundamentals. Race the clock as you try to answer every question before time runs out! Be careful though—every wrong answer deducts 10 seconds from the clock!
 
 - - -
-- - -
-- - -
-- - -
-# 04 Web APIs: Code Quiz
 
-As you proceed in your career as a web developer, you will probably be asked to complete a coding assessment, which is typically a combination of multiple-choice questions and interactive challenges. Build a timed code quiz with multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
+## Resources Used
+
+* Javascript
+* HTML
+* CSS
+* Bootstrap
+* Background by freepik: https://www.freepik.com/photos/background
+
+- - -
 
 ## User Story
 
 ```
-AS A coding bootcamp student
+AS A student of coding
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
 ```
 
-## Acceptance Criteria
+- - -
+
+## Project Criteria
 
 ```
 GIVEN I am taking a code quiz
@@ -35,18 +40,10 @@ WHEN the game is over
 THEN I can save my initials and score
 ```
 
-The following animation demonstrates the application functionality:
-
-![code quiz](./Assets/04-web-apis-homework-demo.gif)
-
-### Review
-
-You are required to submit the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
 - - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
-# lunchbox-code-quiz
+
+## Screenshots
+
+![Start Card](img/lunchbox-quiz-start.png)
+
+![Score Card](img/lunchbox-score-card.png)
