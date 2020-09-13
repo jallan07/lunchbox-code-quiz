@@ -132,7 +132,7 @@ function resetTimer(){
     // clear the timer interval
     clearInterval(timer);
     // Reset the timer button to original state
-    timeLeft.classList.add("btn-outline-success");
+    timeLeft.classList.add("btn btn-outline-success");
     timeLeft.classList.remove("btn-warning");
     timeLeft.classList.remove("btn");
     secondsLeft = 60;
@@ -152,6 +152,7 @@ function showHighScores(){
     startCard.classList.add("d-none");
     quizCards.classList.add("d-none");
     hsCard.classList.remove("d-none");
+    submitCard.classList.add("d-none");
     resetTimer();
 };
 // ————————————————————————————————————————— //
@@ -199,11 +200,11 @@ var quizLibrary = [
     {
        number: "Question #1",
        question: 'How do you write "Hello World" in an alert box?',
-       option1: 'alert("Hello World")',
+       option1: 'alert("Hello World");',
        option2: 'msg("Hello World");',
        option3: 'alertBox("Hello World");',
        option4: 'msgBox("Hello World");',
-       answer: 'alert("Hello World")'
+       answer: 'alert("Hello World");'
     },
     {
         number: "Question #2",
