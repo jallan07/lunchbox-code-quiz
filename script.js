@@ -25,9 +25,9 @@ var userName = document.getElementById("userName").value;
 var submitHS = document.getElementById("submitHS");
 // Variables from High Score card
 var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+var leaderboardList = document.getElementById("leaderboard")
 var submitCard = document.getElementById("submit-card");
 var resetFromHS = document.getElementById("returnFromHS");
-var startFromHS = document.getElementById("startFromHS");
 // Variables for general quiz logic
 var secondsLeft = 60;
 var timer;
@@ -147,12 +147,15 @@ function saveHighscore(e) {
     // Push new scores values to highscores list
     highscores.push(newScore);
     // Sort high scores from best to worst
-    highscores.sort((a, b) => b.newScore - a.newScore);
+    highscores.sort((a, b) => b.score - a.score);
     // Cut off high scores at the top 5 results
     highscores.splice(5);
     // Set highscores to local storage
     localStorage.setItem("highscores", JSON.stringify(highscores));
     console.log(highscores);
+
+    // Run the show high scores function
+    showHighScores();
 };
 
 // ——————————————————————————————————————————— //
@@ -202,14 +205,24 @@ function resetTimer(){
 // ————————————————————————————————————————— //
 // —————— BEGIN HIGH SCORE FUNCTIONS ——————— //
 // ————————————————————————————————————————— //
+
 function showHighScores(){
+    // Display only the high scores card
     startCard.classList.add("d-none");
     quizCards.classList.add("d-none");
     hsCard.classList.remove("d-none");
     submitCard.classList.add("d-none");
-    resetTimer();
+    // Show the leaderboard if there are any saved scores in local storage
+    showLeaderBoard();
+    // Rest the timer back to 0
+    clearInterval(timer);
 };
 
+function showLeaderBoard(){
+    leaderboardList.innerHTML = highscores.map(score => {
+        return `<li class="text-danger"><h4>${score.name} ................................ ${score.score}</h4></li>`
+    }).join("");
+};
 
 // ————————————————————————————————————————— //
 // ——————— END HIGH SCORE FUNCTIONS ———————— //
@@ -235,7 +248,6 @@ function reset(){
 // ——————————————————————————————————————————— //
 // Start quiz listeners
 startQuizBtn.addEventListener("click", startQuiz);
-startFromHS.addEventListener("click", startQuiz);
 // Show high scores listener
 highScoresBtn.addEventListener("click", showHighScores);
 // Reset listeners

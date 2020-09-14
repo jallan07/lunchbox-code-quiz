@@ -99,14 +99,13 @@
                 <div class="card border-dark mb-3 my-3 mx-auto py-4" style="max-width: 40rem;">
                     <div class="card-body">
                       <h1 class="card-title text-center" id="quizQuestionNum">High Scores</h1>
-                      <p class="card-text text-center px-4" id="quizQuestion">Did you make the cut?</p>
-                        <div class="text-center" id="highScoreList">
-                          <ul>
-
-                          </ul>
-                          <div class="text-center">
-                            <button type="button" class="btn btn-success btn-lg" id="returnFromHS">Go back</button>
-                            <button type="button" class="btn btn-outline-success btn-lg" id="startFromHS">Try Your Luck</button>
+                      <p class="card-text text-center" id="quizQuestion">Did you make the cut?</p>
+                        <div id="highScoreList">
+                          <hr>
+                          <ol id="leaderboard"></ol>
+                          <hr>
+                          <div class="mx-auto">
+                            <button type="button" class="btn btn-success btn-lg mx-auto" id="returnFromHS">Go back</button>
                           </div>
                         </div>
                     </div>
