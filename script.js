@@ -19,8 +19,12 @@ var answerBtn2 = document.getElementById("answerBtn2");
 var answerBtn3 = document.getElementById("answerBtn3");
 var answerBtn4 = document.getElementById("answerBtn4");
 var answerBtnAll = document.querySelector('.answerBtn')
-// Variables from High Score card
+// Variables from score card
 var userScoreSpan = document.getElementById("userScore");
+var userName = document.getElementById("userName").value;
+var submitHS = document.getElementById("submitHS");
+// Variables from High Score card
+var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 var submitCard = document.getElementById("submit-card");
 var resetFromHS = document.getElementById("returnFromHS");
 var startFromHS = document.getElementById("startFromHS");
@@ -29,6 +33,7 @@ var secondsLeft = 60;
 var timer;
 var score = 0;
 var currentQuestion = 0;
+
 // —————————————————————————————————————————— //
 // ——————— END VARIABLE DECLARATIONS ———————— //
 // —————————————————————————————————————————— //
@@ -43,7 +48,14 @@ function startQuiz(){
     runQuiz();
 };
 
-function runQuiz() {    
+function runQuiz() {  
+
+    // End game if timer reaches 0
+    if (secondsLeft <= 0){
+        showScoreCard();
+        return;
+    }
+
     startCard.classList.add("d-none");
     quizCards.classList.remove("d-none");
 
@@ -72,8 +84,18 @@ function answerSelected(){
     if (userSelection === quizLibrary[currentQuestion].answer) {
         checkForLastQuestion();
     } else {
+        wrongAnswer();
+    }
+};
+
+// Wrong answer function
+function wrongAnswer(){
+    if (secondsLeft > 10){
         secondsLeft -= 10;
         checkForLastQuestion();
+    } else {
+        secondsLeft = 0;
+        showScoreCard();
     }
 };
 
@@ -83,11 +105,11 @@ function checkForLastQuestion(){
         currentQuestion++;
         runQuiz();
     } else {
-        submitScore();
+        showScoreCard();
     }
 };
 
-function submitScore(){
+function showScoreCard(){
     // Display only the submit score card
     startCard.classList.add("d-none");
     quizCards.classList.add("d-none");
@@ -99,10 +121,42 @@ function submitScore(){
     var userScore = secondsLeft;
     // Write the final score to the submit score page
     userScoreSpan.innerHTML = userScore;
+
+    timeLeft.textContent = "Time Left :" + secondsLeft;
+    timeLeftMobile.textContent = "Time Left :" + secondsLeft;
 };
+
 
 // ——————————————————————————————————————————— //
 // ———————————— END QUIZ FUNCTIONS ——————————— //
+// ——————————————————————————————————————————— //
+
+
+// ——————————————————————————————————————————— //
+// —————— BEGIN LOCAL STORAGE FUNCTIONS —————— //
+// ——————————————————————————————————————————— //
+
+function saveHighscore(e) {
+    // Prevent the previous entries from being cleared out automatically
+    e.preventDefault();
+    // Set the new score values
+    var newScore = {
+        name: document.getElementById("userName").value,
+        score: document.getElementById("userScore").innerHTML
+    };
+    // Push new scores values to highscores list
+    highscores.push(newScore);
+    // Sort high scores from best to worst
+    highscores.sort((a, b) => b.newScore - a.newScore);
+    // Cut off high scores at the top 5 results
+    highscores.splice(5);
+    // Set highscores to local storage
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+    console.log(highscores);
+};
+
+// ——————————————————————————————————————————— //
+// ——————— END LOCAL STORAGE FUNCTIONS ——————— //
 // ——————————————————————————————————————————— //
 
 
@@ -155,6 +209,8 @@ function showHighScores(){
     submitCard.classList.add("d-none");
     resetTimer();
 };
+
+
 // ————————————————————————————————————————— //
 // ——————— END HIGH SCORE FUNCTIONS ———————— //
 // ————————————————————————————————————————— //
@@ -185,6 +241,8 @@ highScoresBtn.addEventListener("click", showHighScores);
 // Reset listeners
 logo.addEventListener("click", reset);
 resetFromHS.addEventListener("click", reset);
+// Submit score from the score card
+submitHS.addEventListener("click", saveHighscore);
 
 // ——————————————————————————————————————————— //
 // ——————————— END EVENT LISTENERS ——————————— //
