@@ -18,7 +18,6 @@ var answerBtn1 = document.getElementById("answerBtn1");
 var answerBtn2 = document.getElementById("answerBtn2");
 var answerBtn3 = document.getElementById("answerBtn3");
 var answerBtn4 = document.getElementById("answerBtn4");
-var answerBtnAll = document.querySelector('.answerBtn')
 // Variables from score card
 var userScoreSpan = document.getElementById("userScore");
 var userName = document.getElementById("userName").value;
@@ -33,7 +32,6 @@ var secondsLeft = 60;
 var timer;
 var score = 0;
 var currentQuestion = 0;
-
 // —————————————————————————————————————————— //
 // ——————— END VARIABLE DECLARATIONS ———————— //
 // —————————————————————————————————————————— //
@@ -125,8 +123,6 @@ function showScoreCard(){
     timeLeft.textContent = "Time Left :" + secondsLeft;
     timeLeftMobile.textContent = "Time Left :" + secondsLeft;
 };
-
-
 // ——————————————————————————————————————————— //
 // ———————————— END QUIZ FUNCTIONS ——————————— //
 // ——————————————————————————————————————————— //
@@ -135,7 +131,6 @@ function showScoreCard(){
 // ——————————————————————————————————————————— //
 // —————— BEGIN LOCAL STORAGE FUNCTIONS —————— //
 // ——————————————————————————————————————————— //
-
 function saveHighscore(e) {
     // Prevent the previous entries from being cleared out automatically
     e.preventDefault();
@@ -157,7 +152,6 @@ function saveHighscore(e) {
     // Run the show high scores function
     showHighScores();
 };
-
 // ——————————————————————————————————————————— //
 // ——————— END LOCAL STORAGE FUNCTIONS ——————— //
 // ——————————————————————————————————————————— //
@@ -208,7 +202,6 @@ function resetTimer(){
 // ————————————————————————————————————————— //
 // —————— BEGIN HIGH SCORE FUNCTIONS ——————— //
 // ————————————————————————————————————————— //
-
 function showHighScores(){
     // Display only the high scores card
     startCard.classList.add("d-none");
@@ -223,10 +216,9 @@ function showHighScores(){
 
 function showLeaderBoard(){
     leaderboardList.innerHTML = highscores.map(score => {
-        return `<li><h4>${score.name} ................................ ${score.score}</h4></li>`
+        return `<li class="text-center"><h4>${score.name} ................................ ${score.score}</h4></li>`
     }).join("");
 };
-
 // ————————————————————————————————————————— //
 // ——————— END HIGH SCORE FUNCTIONS ———————— //
 // ————————————————————————————————————————— //
@@ -258,7 +250,6 @@ logo.addEventListener("click", reset);
 resetFromHS.addEventListener("click", reset);
 // Submit score from the score card
 submitHS.addEventListener("click", saveHighscore);
-
 // ——————————————————————————————————————————— //
 // ——————————— END EVENT LISTENERS ——————————— //
 // ——————————————————————————————————————————— //
