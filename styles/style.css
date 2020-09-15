@@ -74,6 +74,20 @@ main .row {
     list-style: none;
     padding-left: 0;
     font-size: 24px;
+    color: #e74c3c;
+}
+
+#leaderboard li:nth-child(1){
+    color: #2ecc71;
+}
+
+#leaderboard li:nth-child(2){
+    color: #f39c12;
+}
+
+
+#reference{
+    font-size: 16px;
 }
 
 
@@ -122,6 +136,7 @@ main .row {
         font-size: 30px;
     }
     #userName {
-        font-size: 16px;
+        font-size: 15px;
+        width: 80%;
     }
 }

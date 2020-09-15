@@ -170,6 +170,9 @@ function saveHighscore(e) {
 function startTimer(){
     if (secondsLeft > 0) {
         secondsLeft--;
+    } else {
+        showScoreCard();
+        return;
     }
     timeLeft.textContent = "Time Left :" + secondsLeft;
     timeLeftMobile.textContent = "Time Left :" + secondsLeft;
@@ -220,7 +223,7 @@ function showHighScores(){
 
 function showLeaderBoard(){
     leaderboardList.innerHTML = highscores.map(score => {
-        return `<li class="text-danger"><h4>${score.name} ................................ ${score.score}</h4></li>`
+        return `<li><h4>${score.name} ................................ ${score.score}</h4></li>`
     }).join("");
 };
 
